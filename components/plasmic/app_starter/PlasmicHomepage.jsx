@@ -42,6 +42,8 @@ import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-com
 import "@plasmicapp/react-web/lib/plasmic.css";
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
+import plasmic_library_tailwind_3_4_colors_css from "../library_tailwind_3_4_color_tokens/plasmic.module.css"; // plasmic-import: 5ZtnypMovRHeeP3YTdPCYL/projectcss
+import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: fuHHv7AjQ6K6Qz3dKBqbDo/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qfttqsCTRs_5/css
 
@@ -184,6 +186,8 @@ function PlasmicHomepage__RenderFunc(props) {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
+            plasmic_library_tailwind_3_4_colors_css.plasmic_tokens,
+            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
             sty.root
           )}
         >
@@ -256,6 +260,44 @@ function PlasmicHomepage__RenderFunc(props) {
                         projectcss.__wab_text,
                         sty.text__j8Uxj
                       )}
+                      onClick={async event => {
+                        const $steps = {};
+                        $steps["updateTableSelectedRowKey"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["table", "selectedRowKey"]
+                                },
+                                operation: 0
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateTableSelectedRowKey"] != null &&
+                          typeof $steps["updateTableSelectedRowKey"] ===
+                            "object" &&
+                          typeof $steps["updateTableSelectedRowKey"].then ===
+                            "function"
+                        ) {
+                          $steps["updateTableSelectedRowKey"] = await $steps[
+                            "updateTableSelectedRowKey"
+                          ];
+                        }
+                      }}
                     >
                       {"Button"}
                     </div>
@@ -322,6 +364,87 @@ function PlasmicHomepage__RenderFunc(props) {
                     >
                       {"Untitled page"}
                     </h1>
+                    <AntdButton
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__n2W9V
+                      )}
+                      onClick={async () => {
+                        const $steps = {};
+                        $steps["useIntegration"] = true
+                          ? (() => {
+                              const actionArgs = {};
+                              return (async ({ dataOp, continueOnError }) => {
+                                try {
+                                  const response = await executePlasmicDataOp(
+                                    dataOp,
+                                    {
+                                      userAuthToken:
+                                        dataSourcesCtx?.userAuthToken,
+                                      user: dataSourcesCtx?.user
+                                    }
+                                  );
+                                  await plasmicInvalidate(
+                                    dataOp.invalidatedKeys
+                                  );
+                                  return response;
+                                } catch (e) {
+                                  if (!continueOnError) {
+                                    throw e;
+                                  }
+                                  return e;
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["useIntegration"] != null &&
+                          typeof $steps["useIntegration"] === "object" &&
+                          typeof $steps["useIntegration"].then === "function"
+                        ) {
+                          $steps["useIntegration"] = await $steps[
+                            "useIntegration"
+                          ];
+                        }
+                      }}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__kouNh
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
+                          $steps["goToPage"] = true
+                            ? (() => {
+                                const actionArgs = {};
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToPage"] != null &&
+                            typeof $steps["goToPage"] === "object" &&
+                            typeof $steps["goToPage"].then === "function"
+                          ) {
+                            $steps["goToPage"] = await $steps["goToPage"];
+                          }
+                        }}
+                      >
+                        {"Button"}
+                      </div>
+                    </AntdButton>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -457,6 +580,20 @@ function PlasmicHomepage__RenderFunc(props) {
                           throw e;
                         }
                       })(),
+                      fields: (() => {
+                        const __composite = [
+                          { key: "id", fieldId: "id" },
+                          { key: "nome", fieldId: "nome" },
+                          { key: "età", fieldId: "età" },
+                          { key: "città", fieldId: "città", dataType: null },
+                          {},
+                          { title: null }
+                        ];
+
+                        __composite["3"]["dataType"] = "string";
+                        __composite["5"]["title"] = "azioni";
+                        return __composite;
+                      })(),
                       onRowSelectionChanged: async (...eventArgs) => {
                         generateStateOnChangePropForCodeComponents(
                           $state,
@@ -499,7 +636,9 @@ function PlasmicHomepage__RenderFunc(props) {
                         projectcss.plasmic_mixins,
                         projectcss.plasmic_tokens,
                         plasmic_antd_5_hostless_css.plasmic_tokens,
-                        plasmic_plasmic_rich_components_css.plasmic_tokens
+                        plasmic_plasmic_rich_components_css.plasmic_tokens,
+                        plasmic_library_tailwind_3_4_colors_css.plasmic_tokens,
+                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens
                       )
                     };
                     initializeCodeComponentStates(
